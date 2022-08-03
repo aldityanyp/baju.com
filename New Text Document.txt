@@ -1,0 +1,442 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.0.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Aug 10, 2015 at 07:05 
+-- Server version: 5.1.37
+-- PHP Version: 5.3.0
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `heksatamaprima`
+--
+CREATE DATABASE `heksatamaprima` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `heksatamaprima`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `username` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `password` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `nama_lengkap` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `email` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `no_telp` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `level` varchar(20) COLLATE latin1_general_ci NOT NULL DEFAULT 'user',
+  `blokir` enum('Y','N') COLLATE latin1_general_ci NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`username`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`username`, `password`, `nama_lengkap`, `email`, `no_telp`, `level`, `blokir`) VALUES
+('admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'redaksi@bukulokomedia.com', '08238923848', 'admin', 'N');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anggota`
+--
+
+CREATE TABLE IF NOT EXISTS `anggota` (
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `hp` int(12) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `id_user` varchar(25) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `anggota`
+--
+
+INSERT INTO `anggota` (`nama`, `alamat`, `hp`, `email`, `id_user`, `password`) VALUES
+('jojon', 'Bojongnangka', 2147483647, 'tomcruss11@gmail.com', 'ANG-0001', 'b012694e87911f33173e85dd1e72a826'),
+('budi', 'Bojog Nangka 4', 2147483647, 'rodi,anto24@gmail.com', 'ANG-0002', '00dfc53ee86af02e742515cdcf075ed3'),
+('dea', 'bojong', 2147483647, 'tomcruss11@gmail.com', 'ANG-0003', '96991368fec63c8a1bfc48a70010f84a'),
+('budiono', 'jagakarsa', 2147483647, 'jaoko@gmail.com', 'ANG-0004', '86f65b64fbdc018e6faaeb6bfb456164'),
+('rodianto', 'jalan bojong Nangka 2  rt 05/07 no 31', 2147483647, 'rodi.anto@gmail.com', 'ANG-0005', '4c64524c2e980a39a518d63b06a9bde7'),
+('Joko', 'Bekasi', 98888, 'abcdef', 'ANG-0006', '9ba0009aa81e794e628a04b51eaf7d7f'),
+('rodianto', 'bojojongnangka', 50020020, 'rodi.anto@gmail.com', 'ANG-0007', '4c64524c2e980a39a518d63b06a9bde7');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banner`
+--
+
+CREATE TABLE IF NOT EXISTS `banner` (
+  `id_banner` int(5) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `url` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `gambar` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `tgl_posting` date NOT NULL,
+  PRIMARY KEY (`id_banner`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `banner`
+--
+
+INSERT INTO `banner` (`id_banner`, `judul`, `url`, `gambar`, `tgl_posting`) VALUES
+(15, '', 'http://', 'contohiklan.jpg', '2011-03-13'),
+(16, '', 'http://', 'ilove_indonesia.jpg', '2011-03-29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `header`
+--
+
+CREATE TABLE IF NOT EXISTS `header` (
+  `id_header` int(5) NOT NULL AUTO_INCREMENT,
+  `judul` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `url` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `gambar` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `tgl_posting` date NOT NULL,
+  PRIMARY KEY (`id_header`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=25 ;
+
+--
+-- Dumping data for table `header`
+--
+
+INSERT INTO `header` (`id_header`, `judul`, `url`, `gambar`, `tgl_posting`) VALUES
+(21, 'Header1', '', '1.jpg', '2011-03-29'),
+(22, 'Header2', '', '2.jpg', '2011-03-29'),
+(23, 'Header3', '', '3.jpg', '2011-03-29'),
+(24, 'Header4', '', '4.jpg', '2011-03-29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hubungi`
+--
+
+CREATE TABLE IF NOT EXISTS `hubungi` (
+  `id_hubungi` int(5) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `email` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `subjek` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `pesan` text COLLATE latin1_general_ci NOT NULL,
+  `tanggal` date NOT NULL,
+  PRIMARY KEY (`id_hubungi`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=37 ;
+
+--
+-- Dumping data for table `hubungi`
+--
+
+INSERT INTO `hubungi` (`id_hubungi`, `nama`, `email`, `subjek`, `pesan`, `tanggal`) VALUES
+(36, 'Amar', 'arifsyahrul@ymail.com', '11', 'ABC', '2015-04-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategori`
+--
+
+CREATE TABLE IF NOT EXISTS `kategori` (
+  `id_kategori` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_kategori` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `kategori_seo` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`id_kategori`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `kategori_seo`) VALUES
+(17, 'Kapsul', 'kapsul'),
+(16, 'Madu', 'madu'),
+(15, 'Bubuk', 'bubuk'),
+(14, 'Pil', 'pil'),
+(18, 'Minyak', 'minyak'),
+(19, 'Cair', 'cair');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kota`
+--
+
+CREATE TABLE IF NOT EXISTS `kota` (
+  `id_kota` int(3) NOT NULL AUTO_INCREMENT,
+  `id_perusahaan` int(10) NOT NULL,
+  `nama_kota` varchar(100) NOT NULL,
+  `ongkos_kirim` int(10) NOT NULL,
+  PRIMARY KEY (`id_kota`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+
+--
+-- Dumping data for table `kota`
+--
+
+INSERT INTO `kota` (`id_kota`, `id_perusahaan`, `nama_kota`, `ongkos_kirim`) VALUES
+(5, 5, 'Jakarta', 15000),
+(6, 6, 'Bandung', 15000),
+(7, 5, 'Surabaya', 13000),
+(8, 0, 'Banjarmasin', 25000),
+(9, 6, 'Medan', 20000),
+(10, 6, 'Aceh', 25000),
+(11, 6, 'Banjarmasin', 17500),
+(12, 6, 'Bekasi', 9000),
+(13, 5, 'Bekasi', 10000),
+(14, 7, 'Bekasi', 7500),
+(15, 7, 'Jakarta', 8000),
+(16, 5, 'Bandung', 24000),
+(17, 7, 'Banjarmasin', 37000),
+(18, 7, 'Bandung', 23000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mainmenu`
+--
+
+CREATE TABLE IF NOT EXISTS `mainmenu` (
+  `id_main` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_menu` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `link` varchar(100) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `aktif` enum('Y','N') NOT NULL DEFAULT 'Y',
+  PRIMARY KEY (`id_main`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+
+--
+-- Dumping data for table `mainmenu`
+--
+
+INSERT INTO `mainmenu` (`id_main`, `nama_menu`, `link`, `aktif`) VALUES
+(10, 'HOME', 'index.php', 'Y'),
+(11, 'PROFIL ', 'profil-kami.html', 'Y'),
+(12, 'PRODUK', 'semua-produk.html', 'Y'),
+(13, 'KERANJANG BELANJA', 'keranjang-belanja.html', 'Y'),
+(14, 'CARA PEMBELIAN', 'cara-pembelian.html', 'Y'),
+(15, 'DOWNLOAD KATALOG', 'semua-download.html', 'N'),
+(16, 'HUBUNGI KAMI', 'hubungi-kami.html', 'N');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `modul`
+--
+
+CREATE TABLE IF NOT EXISTS `modul` (
+  `id_modul` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_modul` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `link` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `static_content` text COLLATE latin1_general_ci NOT NULL,
+  `gambar` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `status` enum('user','admin') COLLATE latin1_general_ci NOT NULL,
+  `aktif` enum('Y','N') COLLATE latin1_general_ci NOT NULL,
+  `urutan` int(5) NOT NULL,
+  PRIMARY KEY (`id_modul`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=64 ;
+
+--
+-- Dumping data for table `modul`
+--
+
+INSERT INTO `modul` (`id_modul`, `nama_modul`, `link`, `static_content`, `gambar`, `status`, `aktif`, `urutan`) VALUES
+(18, 'Tambah Produk', '?module=produk', '', '', 'admin', 'Y', 5),
+(42, 'Lihat Order Masuk', '?module=order', '', '', 'admin', 'Y', 8),
+(10, 'Manajemen Modul', '?module=modul', '', '', 'admin', 'Y', 19),
+(31, 'Tambah Kategori Produk', '?module=kategori', '', '', 'admin', 'Y', 4),
+(43, 'Edit Profil', '?module=profil', '<p class="MsoNormal">\r\n<span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; line-height: 18px; text-align: justify; background-color: #ffffff">Heksatamaprima adalah perusahaan yang bergerak di bidang penjualan obat herbal,terlengkap, terbaik dan terjangkau harganya. Kami memberi</span><span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; line-height: 18px; text-align: justify; background-color: #ffffff">kan pelayanan yang baik bagi konsumen yang akan melakukan pembelian di toko obat kami.</span>\r\n</p>\r\n', '12sfhijau.jpg', 'admin', 'Y', 7),
+(44, 'Lihat Pesan Masuk', '?module=hubungi', '', '', 'admin', 'Y', 9),
+(45, ' Edit Cara Pembelian', '?module=carabeli', '<ol>\r\n	<li>Klik pada tombol&nbsp;<span style="font-weight: bold">Beli</span> pada produk yang ingin Anda pesan.</li>\r\n	<li>Produk yang Anda pesan akan masuk ke dalam <span style="font-weight: bold">Keranjang Belanja</span>. Anda dapat melakukan perubahan jumlah produk yang diinginkan dengan mengganti angka di kolom <span style="font-weight: bold">Jumlah</span>, kemudian klik tombol <span style="font-weight: bold">Update</span>. Sedangkan untuk menghapus sebuah produk dari Keranjang Belanja, klik tombol Kali yang berada di kolom paling kanan.</li>\r\n	<li>Jika sudah selesai, klik tombol <span style="font-weight: bold">Selesai Belanja</span>, maka akan tampil form untuk pengisian data kustomer/pembeli.</li>\r\n	<li>Setelah data pembeli selesai diisikan, klik tombol <span style="font-weight: bold">Proses</span>, maka akan tampil data pembeli beserta produk yang dipesannya (jika diperlukan catat nomor ordernya). Dan juga ada total pembayaran serta nomor rekening pembayaran.</li>\r\n	<li>Apabila telah melakukan pembayaran, maka produk/barang akan segera kami kirimkan. <br />\r\n	</li>\r\n</ol>\r\n', 'gedung.jpg', 'admin', 'Y', 10),
+(47, 'Edit Link Terkait', '?module=banner', '', '', 'user', 'Y', 13),
+(48, 'Edit Ongkos Kirim', '?module=ongkoskirim', '', '', 'user', 'Y', 11),
+(49, 'Ganti Password', '?module=password', '', '', 'user', 'Y', 1),
+(53, 'User Yahoo Messenger', '?module=ym', '', '', 'user', 'Y', 15),
+(52, 'Lihat Laporan Transaksi', '?module=laporan', '', '', 'user', 'Y', 14),
+(56, 'Edit Jasa Pengiriman', '?module=jasapengiriman', '<span class="center_content2"><font size="2"><span class="center_content">\r\n<div class="profil">\r\n<div>\r\n<span class="center_content">\r\n<div>\r\n<strong>Selamat Datang di&nbsp;Heksatamaprima..\r\n</strong>\r\n</div>\r\n<div>\r\n<!--[if gte mso 9]><xml>\r\n<w:WordDocument>\r\n<w:View>Normal</w:View>\r\n<w:Zoom>0</w:Zoom>\r\n<w:Compatibility>\r\n<w:BreakWrappedTables/>\r\n<w:SnapToGridInCell/>\r\n<w:WrapTextWithPunct/>\r\n<w:UseAsianBreakRules/>\r\n</w:Compatibility>\r\n<w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>\r\n</w:WordDocument>\r\n</xml><![endif]-->\r\n<!--\r\n/* Style Definitions */\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n{mso-style-parent:"";\r\nmargin:0cm;\r\nmargin-bottom:.0001pt;\r\nmso-pagination:widow-orphan;\r\nfont-size:12.0pt;\r\nfont-family:"Times New Roman";\r\nmso-fareast-font-family:"Times New Roman";}\r\nspan.centercontent\r\n{mso-style-name:center_content;}\r\n@page Section1\r\n{size:612.0pt 792.0pt;\r\nmargin:72.0pt 90.0pt 72.0pt 90.0pt;\r\nmso-header-margin:35.4pt;\r\nmso-footer-margin:35.4pt;\r\nmso-paper-source:0;}\r\ndiv.Section1\r\n{page:Section1;}\r\n-->\r\n<!--[if gte mso 10]>\r\n<style>\r\n/* Style Definitions */\r\ntable.MsoNormalTable\r\n{mso-style-name:"Table Normal";\r\nmso-tstyle-rowband-size:0;\r\nmso-tstyle-colband-size:0;\r\nmso-style-noshow:yes;\r\nmso-style-parent:"";\r\nmso-padding-alt:0cm 5.4pt 0cm 5.4pt;\r\nmso-para-margin:0cm;\r\nmso-para-margin-bottom:.0001pt;\r\nmso-pagination:widow-orphan;\r\nfont-size:10.0pt;\r\nfont-family:"Times New Roman";}\r\n</style>\r\n<![endif]-->\r\n<p class="MsoNormal">\r\n<!--[if gte mso 9]><xml>\r\n<w:WordDocument>\r\n<w:View>Normal</w:View>\r\n<w:Zoom>0</w:Zoom>\r\n<w:Compatibility>\r\n<w:BreakWrappedTables/>\r\n<w:SnapToGridInCell/>\r\n<w:WrapTextWithPunct/>\r\n<w:UseAsianBreakRules/>\r\n</w:Compatibility>\r\n<w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>\r\n</w:WordDocument>\r\n</xml><![endif]-->\r\n<!--\r\n/* Style Definitions */\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n{mso-style-parent:"";\r\nmargin:0cm;\r\nmargin-bottom:.0001pt;\r\nmso-pagination:widow-orphan;\r\nfont-size:12.0pt;\r\nfont-family:"Times New Roman";\r\nmso-fareast-font-family:"Times New Roman";}\r\nspan.centercontent\r\n{mso-style-name:center_content;}\r\n@page Section1\r\n{size:612.0pt 792.0pt;\r\nmargin:72.0pt 90.0pt 72.0pt 90.0pt;\r\nmso-header-margin:35.4pt;\r\nmso-footer-margin:35.4pt;\r\nmso-paper-source:0;}\r\ndiv.Section1\r\n{page:Section1;}\r\n-->\r\n<!--[if gte mso 10]>\r\n<style>\r\n/* Style Definitions */\r\ntable.MsoNormalTable\r\n{mso-style-name:"Table Normal";\r\nmso-tstyle-rowband-size:0;\r\nmso-tstyle-colband-size:0;\r\nmso-style-noshow:yes;\r\nmso-style-parent:"";\r\nmso-padding-alt:0cm 5.4pt 0cm 5.4pt;\r\nmso-para-margin:0cm;\r\nmso-para-margin-bottom:.0001pt;\r\nmso-pagination:widow-orphan;\r\nfont-size:10.0pt;\r\nfont-family:"Times New Roman";}\r\n</style>\r\n<![endif]-->\r\n</p>\r\n<p class="MsoNormal">\r\n<span class="centercontent"><span style="font-size: 10pt; font-family: Arial">Kami menyediakan berbagai macam produk obat; cair, bubuk, pil, madu, kapsul maupun minyak. Heksatamaprima berada di lokasi yang strategis dari konsumen yang ingin melakukan pembelian langsung ke toko.&nbsp;</span></span>\r\n</p>\r\n<p class="MsoNormal">\r\n<span class="centercontent"><span style="font-size: 10pt; font-family: Arial">Kami berusaha memanjakan sekaligus\r\nmemudahkan para customer untuk berbelanja di toko kami. \r\nKenyamanan dan\r\nkeamanan pun kami jaga sehingga tercipta hubungan baik penjual dan \r\npembeli.</span></span>\r\n</p>\r\n<p class="MsoNormal">\r\n<span class="centercontent"><span style="font-size: 10pt; font-family: Arial">Selamat berbelanja. Dan terima kasih atas kunjungan anda&hellip;</span></span>\r\n</p>\r\n</div>\r\n</span>\r\n</div>\r\n</div>\r\n</span></font></span>\r\n', 'hai.jpg', 'user', 'Y', 12),
+(57, 'Edit Rekening Bank', '?module=bank', '', '', 'user', 'Y', 16),
+(58, 'Edit Selamat Datang', '?module=welcome', '<strong>mobilestore.com</strong> merupakan website resmi dari Toko HP Lokomedia \r\nyang bermarkas di Jl. Arwana No.24 Minomartani Yogyakarta 55581. \r\nDirintis pertama kali oleh Lukmanul Hakim pada tanggal 14 Maret 2008.<br />\r\n<br />\r\nProduk\r\nunggulan dari Toko HP Lokomedia adalah produk-produk serta aksesoris \r\nbertema Nokia yang merupakan merk produk handphone paling terdepan saat \r\nini.\r\n', 'gedung.jpg', 'user', 'Y', 6),
+(59, 'Ganti Header', '?module=header', '', '', 'user', 'Y', 18),
+(61, 'Edit Menu Utama', '?module=menuutama', '', '', 'user', 'Y', 2),
+(62, 'Edit Sub Menu', '?module=submenu', '', '', 'user', 'Y', 3),
+(63, 'Edit Download Katalog', '?module=download', '', '', 'user', 'Y', 17);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id_orders` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_kustomer` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `alamat` text COLLATE latin1_general_ci NOT NULL,
+  `telpon` varchar(20) COLLATE latin1_general_ci NOT NULL,
+  `email` varchar(50) COLLATE latin1_general_ci NOT NULL,
+  `status_order` varchar(50) COLLATE latin1_general_ci NOT NULL DEFAULT 'Baru',
+  `tgl_order` date NOT NULL,
+  `jam_order` time NOT NULL,
+  `id_kota` int(3) NOT NULL,
+  PRIMARY KEY (`id_orders`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id_orders`, `nama_kustomer`, `alamat`, `telpon`, `email`, `status_order`, `tgl_order`, `jam_order`, `id_kota`) VALUES
+(1, 'Amar', 'Jakarta', '0878', 'arifsyahrul@ymail.com', 'Lunas/Terkirim', '2015-06-14', '05:09:15', 10),
+(2, 'Rodianto', 'Jakarta', '087886073461', 'siti.kimyury1@facebook.com', 'Lunas/Terkirim', '2015-06-14', '05:18:23', 5),
+(3, 'Syahrul', 'condet', '2222', 'arifsyahrul@ymail.com', 'Lunas/Terkirim', '2015-06-14', '05:33:50', 11),
+(4, 'zx', 'bogor', '08788888', 'arifsyahrul@ymail.com', 'Lunas/Terkirim', '2015-06-21', '18:27:47', 10),
+(5, 'budiono', 'jagakarsa', '2147483647', 'jaoko@gmail.com', 'Lunas/Terkirim', '2015-08-03', '12:44:04', 6),
+(10, 'rodianto', 'jalan bojong Nangka 2  rt 05/07 no 31', '2147483647', 'rodi.anto@gmail.com', 'Baru', '2015-08-10', '17:01:49', 10),
+(9, 'rodianto', 'jalan bojong Nangka 2  rt 05/07 no 31', '2147483647', 'rodi.anto@gmail.com', 'Baru', '2015-08-10', '16:52:32', 14);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `orders_detail` (
+  `id_orders` int(5) NOT NULL,
+  `id_produk` int(5) NOT NULL,
+  `jumlah` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `orders_detail`
+--
+
+INSERT INTO `orders_detail` (`id_orders`, `id_produk`, `jumlah`) VALUES
+(1, 94, 1),
+(2, 98, 1),
+(3, 98, 1),
+(4, 94, 2),
+(5, 93, 1),
+(6, 99, 1),
+(7, 98, 1),
+(8, 96, 1),
+(9, 94, 1),
+(9, 96, 1),
+(10, 93, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_temp`
+--
+
+CREATE TABLE IF NOT EXISTS `orders_temp` (
+  `id_orders_temp` int(5) NOT NULL AUTO_INCREMENT,
+  `id_produk` int(5) NOT NULL,
+  `id_session` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `jumlah` int(5) NOT NULL,
+  `tgl_order_temp` date NOT NULL,
+  `jam_order_temp` time NOT NULL,
+  `stok_temp` int(5) NOT NULL,
+  PRIMARY KEY (`id_orders_temp`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=267 ;
+
+--
+-- Dumping data for table `orders_temp`
+--
+
+INSERT INTO `orders_temp` (`id_orders_temp`, `id_produk`, `id_session`, `jumlah`, `tgl_order_temp`, `jam_order_temp`, `stok_temp`) VALUES
+(265, 97, 'j3saarium3fvtpqtq1tq974o77', 1, '2015-08-10', '17:54:46', 10),
+(266, 97, '1e8jn1ukk9g0vjmkmq293a6bh7', 2, '2015-08-10', '17:59:34', 10),
+(264, 96, 'j3saarium3fvtpqtq1tq974o77', 2, '2015-08-10', '17:50:34', 18);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
+--
+
+CREATE TABLE IF NOT EXISTS `produk` (
+  `id_produk` int(5) NOT NULL AUTO_INCREMENT,
+  `id_kategori` int(5) NOT NULL,
+  `nama_produk` varchar(100) NOT NULL,
+  `produk_seo` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `harga` int(20) NOT NULL,
+  `stok` int(5) NOT NULL,
+  `berat` decimal(5,2) unsigned NOT NULL DEFAULT '0.00',
+  `tgl_masuk` date NOT NULL,
+  `gambar` varchar(100) NOT NULL,
+  `dibeli` int(5) NOT NULL DEFAULT '1',
+  `diskon` int(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_produk`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=100 ;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `id_kategori`, `nama_produk`, `produk_seo`, `deskripsi`, `harga`, `stok`, `berat`, `tgl_masuk`, `gambar`, `dibeli`, `diskon`) VALUES
+(97, 15, 'Kurma Ajwa', 'kurma-ajwa', '<div>\r\nKurma Ajwa merupakan Habbatus Sauda yang terbuat dari Habbatus Sauda yang diproses secara ekstraksi, yang bermanfaat untuk kesehatan dan memperbaiki fungsi-fungsi dari organ tubuh yang bermasalah.\r\n</div>\r\n', 35000, 10, '0.00', '2015-04-30', '36hbb.jpg', 1, 0),
+(98, 19, 'La Tamba ', 'la-tamba-', 'La Tambah adalah obat herbal yang terbuat dari apel yang dipermentasikan sehingga menjadi cuka.<span style="white-space: pre" class="Apple-tab-span">		</span>\r\n', 50000, 8, '0.00', '2015-04-30', '95cuka-apel.jpg', 3, 0),
+(99, 14, 'Queen Secret', 'queen-secret', 'Queen Secret adalah produk untuk melancarkan haid.\r\n', 100000, 10, '0.00', '2015-04-30', '41queen screet.png', 1, 0),
+(93, 18, 'Minyak AL HIJAMAH', 'minyak-al-hijamah', 'Minyak AL HIJAMAH adalah minyak yang bekhasiat untuk penyembuhan bagi kulit, seperti namanya minyak al hijamah (Bekam) dibuat untuk bekam, namun bisa juga digunakan untuk urut, pijat dan oles kulit yang terkena sengatan atau luka.<span style="white-space: pre" class="Apple-tab-span">		</span>\r\n', 100000, 8, '0.00', '2015-04-20', '9921MinyakAlhijamah.jpg', 3, 0),
+(94, 16, 'Sari Kurma', 'sari-kurma', 'Sari Kurma adalah saripati yang diambil dari kurma yang atau ekstraksi kurma, kurma memiliki khasiat yang bagus untuk kesehatan dan daya tahan tubuh agar terhindar dari radikal racun yang akan masuk ke dalam tubuh.\r\n', 35000, 7, '0.80', '2015-04-26', '84Sari-Korma-super-155x300.png', 4, 0),
+(95, 16, 'Madu Hutan', 'madu-hutan', 'Madu ini adalah yang terbaik yang kami sajikan dalam bentuk yang sudah di pack.\r\n', 50000, 10, '0.00', '2015-04-27', '34madu.png', 1, 0),
+(96, 17, 'Habasya', 'habasya', 'Habasya adalah herbal yang terbuat dari habbatusauda yang berkuatas baik ,dan aman dikonsumsi secara continue.\r\n', 100000, 18, '300.00', '2015-04-30', '6042HBT001.jpg', 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_pengiriman`
+--
+
+CREATE TABLE IF NOT EXISTS `shop_pengiriman` (
+  `id_perusahaan` int(10) NOT NULL AUTO_INCREMENT,
+  `nama_perusahaan` varchar(100) NOT NULL,
+  `gambar` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_perusahaan`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data for table `shop_pengiriman`
+--
+
+INSERT INTO `shop_pengiriman` (`id_perusahaan`, `nama_perusahaan`, `gambar`) VALUES
+(6, 'JNE', ''),
+(5, 'TIKI', ''),
+(7, 'POS EKSPRESS', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submenu`
+--
+
+CREATE TABLE IF NOT EXISTS `submenu` (
+  `id_sub` int(5) NOT NULL AUTO_INCREMENT,
+  `nama_sub` varchar(50) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `link_sub` varchar(100) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `id_main` int(5) NOT NULL,
+  PRIMARY KEY (`id_sub`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+
+--
+-- Dumping data for table `submenu`
+--
+
+INSERT INTO `submenu` (`id_sub`, `nama_sub`, `link_sub`, `id_main`) VALUES
+(26, 'MADU', 'kategori-16-madu.html', 12),
+(25, 'KOLEKSI BAJU', 'kategori-17-koleksi-baju.html', 0),
+(23, 'KAPSUL', 'kategori-17-kapsul.html', 12),
+(24, 'BUBUK', 'kategori-15-bubuk.html', 12),
+(20, 'LIHAT KERANJANG', 'keranjang-belanja.html', 13),
+(21, 'SELESAI BELANJA', 'selesai-belanja.html', 13),
+(27, 'MINYAK', 'kategori-18-minyak.html', 12),
+(28, 'CAIR', 'kategori-19-cair.html', 12),
+(29, 'PIL', 'kategori-14-pil.html', 12);
